@@ -7,24 +7,25 @@ import SearchBox from "./components/SearchBox";
 import NavButtons from "./components/NavButtons";
 
 function App() {
-  let [username, setUsername] = useState("");
-  let [repoList, setRepoList] = useState([]);
-  let [loading, setLoading] = useState(false);
-  let [pageCount, setPageCount] = useState("10");
-  let [queryString, setQueryString] = useState("");
-  let [totalCount, setTotalCount] = useState("1");
+  const [username, setUsername] = useState("");
+  const [repoList, setRepoList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [pageCount, setPageCount] = useState("10");
+  const [queryString, setQueryString] = useState("angular");
+  const [totalCount, setTotalCount] = useState("1");
 
-  let [startCursor, setStartCursor] = useState(null);
-  let [endCursor, setEndCursor] = useState(null);
-  let [hasPreviousPage, setHasPreviousPage] = useState(false);
-  let [hasNextPage, setHasNextPage] = useState(true);
-  let [paginationKeyword, setpaginationKeyword] = useState("first");
-  let [paginationString, setPaginationString] = useState("");
+  const [startCursor, setStartCursor] = useState(null);
+  const [endCursor, setEndCursor] = useState(null);
+  const [hasPreviousPage, setHasPreviousPage] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
+  const [paginationKeyword, setpaginationKeyword] = useState("first");
+  const [paginationString, setPaginationString] = useState("");
 
   const fetchData = useCallback(() => {
     const queryText = JSON.stringify(
       query(pageCount, queryString, paginationKeyword, paginationString)
     );
+
     fetch(github.baseURL, {
       method: "POST",
       headers: github.headers,
@@ -52,7 +53,7 @@ function App() {
 
         setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, [pageCount, queryString, paginationKeyword, paginationString]);
 
   useEffect(() => {

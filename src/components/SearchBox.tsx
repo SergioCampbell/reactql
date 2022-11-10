@@ -41,7 +41,7 @@ export default function SearchBox({
         />
       </div>
       <div>
-        <b className="me-2 text-secondary">Total: {totalCount + 1}</b>
+        <b className="me-2 text-secondary">Total: {totalCount}</b>
       </div>
     </div>
   );
